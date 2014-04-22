@@ -28,7 +28,16 @@ body {
 }
 
 canvas {
-    background-color: red;
+    background-color: black;
     margin: auto;
     vertical-align: middle;
+}
+
+#menubar {
+    text-align: center;
+}
+
+#menubar img {
+    width: 128px;
+    height: 128px;
 }
