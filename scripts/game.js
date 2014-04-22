@@ -14,8 +14,6 @@ define(['board', 'board_view', 'rules'], function (Board, BoardView, Rules) {
 
     	board = new Board(rows, cols);
     	boardView = new BoardView(rows, cols, cellSize, lineWidth, board);
-
-    	
     }
 
     function handleClick(x, y) {
@@ -54,8 +52,6 @@ define(['board', 'board_view', 'rules'], function (Board, BoardView, Rules) {
     		window.setTimeout(generateNewGeneration, 100);
 		};
     }
-
-
 
     function stop() {
     	running = false;

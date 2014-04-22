@@ -12,24 +12,49 @@ require.config({
 
 require(['game'], function(Game) {
 
-	Game.init();
+	init();
 
-	var canvas = document.getElementById('canvas');
-	canvas.addEventListener('click', function(event) {
-		var x = event.pageX - canvas.offsetLeft;
-		var y = event.pageY - canvas.offsetTop;
-		Game.handleClick(x, y);
-	});
+	function initCanvas() {
+		$(document).ready(function() {
+			$('canvas').click(function(e) {
+				var x = e.pageX - $(this).offset().left;
+				var y = e.pageY - $(this).offset().top;
+				Game.handleClick(x, y);
+			});
 
-	$(document).keyup(function(e) {
-		if (e.which === 83) {
-			if (!Game.isRunning()) {
-				Game.start();
-			};
-		}
-		else if (e.which === 80) {
-			Game.stop();
-		}
-	});
+			$('#hoverbar').hover(showBar, hideBar);
 
+			function showBar() {
+				$('#menubar').animate({
+					top: "0px"
+				});
+			}
+
+			function hideBar() {
+				var height = $('#menubar').height();
+				$('#menubar').animate({
+					top: '-' + height + 'px'
+				});
+			}
+		});
+	}
+
+	function initKeyListener() {
+		$(document).keyup(function(e) {
+			if (e.which === 83) {
+				if (!Game.isRunning()) {
+					Game.start();
+				};
+			}
+			else if (e.which === 80) {
+				Game.stop();
+			}
+		});
+	}	
+
+	function init() {
+		Game.init();
+		initCanvas();
+		initKeyListener();
+	}
 });
