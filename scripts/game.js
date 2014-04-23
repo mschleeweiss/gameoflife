@@ -1,24 +1,25 @@
 define(['board', 'board_view', 'rules'], function (Board, BoardView, Rules) {
     var board;
     var boardView;
-    var running = false;
-    var cellSize = 10;
-    var lineWidth = 1;
+    var running;
+    var CELLSIZE = 10;
+    var LINEWIDTH = 1;
 
     function init() {
     	var browserWidth = window.innerWidth;
     	var browserHeight = window.innerHeight;
 
-    	var rows = Math.floor((browserHeight - lineWidth) / (cellSize + lineWidth));
-    	var cols = Math.floor((browserWidth - lineWidth) / (cellSize + lineWidth));
+    	var rows = Math.floor((browserHeight - LINEWIDTH) / (CELLSIZE + LINEWIDTH));
+    	var cols = Math.floor((browserWidth - LINEWIDTH) / (CELLSIZE + LINEWIDTH));
 
+        running = false;
     	board = new Board(rows, cols);
-    	boardView = new BoardView(rows, cols, cellSize, lineWidth, board);
+    	boardView = new BoardView(rows, cols, CELLSIZE, LINEWIDTH, board);
     }
 
     function handleClick(x, y) {
-    	var row = Math.floor(y / (cellSize + lineWidth));
-		var col = Math.floor(x / (cellSize + lineWidth));
+    	var row = Math.floor(y / (CELLSIZE + LINEWIDTH));
+		var col = Math.floor(x / (CELLSIZE + LINEWIDTH));
 
 		var state = board.getCellState(row, col);
 		board.setCellState(row, col, !state);
